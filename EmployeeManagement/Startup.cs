@@ -23,6 +23,8 @@ namespace EmployeeManagement
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+			//Adding MVC Service to Dependency Injection Container.
+			services.AddMvc(mvcOptions => mvcOptions.EnableEndpointRouting = false);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,15 +36,9 @@ namespace EmployeeManagement
 			}
 
 			app.UseStaticFiles();
-			
-			app.UseRouting();
 
-			app.Run(async context =>
-			{
-				var environment =env.EnvironmentName;
-				await context.Response.WriteAsync("Current Environment: "+environment);
-			});
-
+			//Including MVC in the pipeline.
+			app.UseMvcWithDefaultRoute();
 		}
 	}
 }
