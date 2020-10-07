@@ -33,9 +33,16 @@ namespace EmployeeManagement
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseRouting();
+			//Middleware to redirect the request to default files.
+			//Note: it should be before the StaticFiles middleware because DeafultFiles
+			//Middleware just redirects the request to default.html or index.html but it can't 
+			//serve the static files.
+			app.UseDefaultFiles();
+
 			// Middleware to serve static files
 			app.UseStaticFiles();
+			
+			app.UseRouting();
 
 			app.UseEndpoints(endpoints =>
 			{
