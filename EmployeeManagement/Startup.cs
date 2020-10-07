@@ -33,11 +33,16 @@ namespace EmployeeManagement
 				app.UseDeveloperExceptionPage();
 			}
 
+
+			DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+			defaultFilesOptions.DefaultFileNames.Clear();
+			defaultFilesOptions.DefaultFileNames.Add("Initial.html");
+
 			//Middleware to redirect the request to default files.
 			//Note: it should be before the StaticFiles middleware because DeafultFiles
 			//Middleware just redirects the request to default.html or index.html but it can't 
 			//serve the static files.
-			app.UseDefaultFiles();
+			app.UseDefaultFiles(defaultFilesOptions);
 
 			// Middleware to serve static files
 			app.UseStaticFiles();
