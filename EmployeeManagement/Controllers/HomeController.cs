@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,16 @@ namespace EmployeeManagement.Controllers
 {
 	public class HomeController
 	{
+		private IEmployeeRepository _employeeRepository;
+
+		//Constructor Injection
+		public HomeController(IEmployeeRepository employeeRepository)
+		{
+			_employeeRepository = employeeRepository;
+		}
 		public string Index()
 		{
-			return "Hello World from Home Controller";
+			return _employeeRepository.GetEmployee(1).Name;
 		}
 	}
 }
