@@ -30,26 +30,17 @@ namespace EmployeeManagement
 		{
 			if (env.IsDevelopment())
 			{
-				DeveloperExceptionPageOptions developerExceptionPageOptions = new DeveloperExceptionPageOptions()
-				{
-					//This indicates # of lines to be shown before and after the exception.
-					SourceCodeLineCount = 5
-				};
-				app.UseDeveloperExceptionPage(developerExceptionPageOptions);
+				app.UseDeveloperExceptionPage();
 			}
 
-			//This is a combination of UseDefacultFiles(), UseStaticFiles() and UseDirectoryFiles() middlewares
-			//when the file is aviable it serves the file and short circuit (stops and reverse) the pipeline otherwise
-			//it just pass on the request to next middleware
-			app.UseFileServer();
+			app.UseStaticFiles();
 			
 			app.UseRouting();
 
 			app.Run(async context =>
 			{
-					var process = _config["Key"];
-					throw new Exception("Just to demo the Developer Exception Page.");
-					await context.Response.WriteAsync(process);
+				var environment =env.EnvironmentName;
+				await context.Response.WriteAsync("Current Environment: "+environment);
 			});
 
 		}

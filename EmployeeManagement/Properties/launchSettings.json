@@ -12,6 +12,8 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        //Environment is set here, we can also define environment in the OS(in Environmental Variables)
+        //This takes high priority over the environmenta variables 
         "ASPNETCORE_ENVIRONMENT": "Development",
         "key": "Environmental var"
       }
