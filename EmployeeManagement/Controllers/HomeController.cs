@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Models;
+using EmployeeManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,14 @@ namespace EmployeeManagement.Controllers
 
 		public ViewResult Details()
 		{
-			var employeeModel = _employeeRepository.GetEmployee(1);
-			ViewBag.PageTitle = "Employee Details:";
-			return View(employeeModel);
+			//We create a ViewModel when the model object
+			//doesn't contain all the data a view needs.
+			HomeDetailsViewModel detailsViewModel = new HomeDetailsViewModel()
+			{
+				Employee = _employeeRepository.GetEmployee(1),
+				PageTitle = "Employee Details:"
+			};
+			return View(detailsViewModel);
 		}
 	}
 }
