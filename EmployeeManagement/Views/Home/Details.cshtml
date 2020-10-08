@@ -1,17 +1,15 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿@model EmployeeManagement.Models.Employee
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>DotNet</title>
 </head>
 <body>
 	<h3>@ViewBag.PageTitle</h3>
-	@{
-		var employee = ViewBag.Employee;
-	}
 	<div>
-		Name: @employee.Name
+		Name: @Model.Name
 	</div>
 	<div>
-		Email: @employee.Email
+		Email: @Model.Email
 	</div>
 </body>
 </html>
