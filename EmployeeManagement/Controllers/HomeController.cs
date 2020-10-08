@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
-	public class HomeController
+	public class HomeController : Controller
 	{
 		private IEmployeeRepository _employeeRepository;
 
@@ -18,6 +19,16 @@ namespace EmployeeManagement.Controllers
 		public string Index()
 		{
 			return _employeeRepository.GetEmployee(1).Name;
+		}
+
+		public ViewResult Details()
+		{
+			var employeeModel = _employeeRepository.GetEmployee(1);
+			//ViewData provides loosely typed views which are resolved at runtime,
+			//As they are resolved at runtime, they do cause runtime errors.
+			ViewData["Employee"] = employeeModel;
+			ViewData["PageTitle"] = "Employee Data:";
+			return View(employeeModel);
 		}
 	}
 }
