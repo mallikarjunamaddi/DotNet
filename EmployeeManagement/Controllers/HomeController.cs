@@ -24,11 +24,11 @@ namespace EmployeeManagement.Controllers
 		public ViewResult Details()
 		{
 			var employeeModel = _employeeRepository.GetEmployee(1);
-			//ViewData provides loosely typed views which are resolved at runtime,
+			//ViewBag provides loosely typed views which are resolved at runtime,
 			//As they are resolved at runtime, they do cause runtime errors.
-			ViewData["Employee"] = employeeModel;
-			ViewData["PageTitle"] = "Employee Data:";
-			return View(employeeModel);
+			ViewBag.Employee = employeeModel;
+			ViewBag.PageTitle = "Employee Data:";
+			return View();
 		}
 	}
 }
