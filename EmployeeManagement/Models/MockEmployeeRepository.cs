@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EmployeeManagement.Models
@@ -15,6 +16,12 @@ namespace EmployeeManagement.Models
 				new Employee(){ Id=3, Name="Reia", Email="reia@gmail.com" }
 			};
 		}
+
+		public IEnumerable GetAllEmployees()
+		{
+			return _employeeList;
+		}
+
 		public Employee GetEmployee(int id)
 		{
 			return _employeeList.FirstOrDefault( e => e.Id == id);
