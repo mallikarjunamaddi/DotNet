@@ -42,7 +42,13 @@ namespace EmployeeManagement
 			app.UseStaticFiles();
 
 			//Including MVC in the pipeline.
-			app.UseMvcWithDefaultRoute();
+			//app.UseMvcWithDefaultRoute();
+
+			//Conventional Routing
+			app.UseMvc( routes =>
+			{
+				routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+			});
 		}
 	}
 }
