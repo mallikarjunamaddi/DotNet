@@ -36,8 +36,9 @@ namespace EmployeeManagement
 			//Adding MVC Service to Dependency Injection Container.
 			services.AddMvc(mvcOptions => mvcOptions.EnableEndpointRouting = false);
 
-			//Adding MockEmployeeRepository to Dependency Injection Container.
-			services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+			//Adding In SQL localDB for EmployeeRepository to Dependency Injection Container.
+			//It must be a scoped service, becoz it should have one instance per http Request.
+			services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
