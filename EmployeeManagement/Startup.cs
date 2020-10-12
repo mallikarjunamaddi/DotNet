@@ -6,6 +6,7 @@ using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +25,14 @@ namespace EmployeeManagement
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+			//It registers our dbContext class with DI
+			//when we use AddDbContextPool to register, it will check whether the dbcontext 
+			//instance is already available in the pool, if availble it wont create a new
+			//instance. so that it improves application performance.
+			//Here we specify, the type of database provider and database connection string in the options.
+			services.AddDbContextPool<EmployeeManagementDbContext>(options => 
+			options.UseSqlServer(_config.GetConnectionString("EmployeeDB")));
+
 			//Adding MVC Service to Dependency Injection Container.
 			services.AddMvc(mvcOptions => mvcOptions.EnableEndpointRouting = false);
 
